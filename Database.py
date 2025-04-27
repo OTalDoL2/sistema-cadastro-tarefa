@@ -18,33 +18,37 @@ class Database:
             
     def adicionar_nova_tarefa(self, descricao):
         cursor = self.conn.cursor()
-        cursor.execute("INSERT INTO Tarefas (Descricao, Status, DataCriacao) VALUES (?, 'Não Iniciada', GETDATE())",(descricao))
+        cursor.execute("EXEC AdicionarNovaTarefa ?",(descricao))
         self.conn.commit()
         cursor.close()
         print('Tarefa Criada com Sucesso!')
     
     def listar_tarefas(self):
         cursor = self.conn.cursor()
-        cursor.execute("SELECT * FROM Tarefas")
+        cursor.execute("EXEC ListarTarefas")
         rows = cursor.fetchall()
         print("\nTarefas cadastradas:")
         for row in rows:
             print(f"ID: {row.TarefaId}, Descrição: {row.Descricao}, Status da Tarefa: {row.Status}, Data Criação: {row.DataCriacao}, Data Conclusão: {row.DataConclusao}")
         cursor.close()
         
-    def atualizar_status(self, id, novo_status):
+    def atualizar_status(self, id, novo_status="Desconhecido"):
         cursor = self.conn.cursor()
+        if novo_status == "Desconhecido":
+            cursor.execute("EXEC BuscarStatus ?", (id))
+            
         if novo_status == 'Concluído':
-            cursor.execute("UPDATE Tarefas set Status = ?, DataConclusao = GETDATE() WHERE TarefaId = ?", (novo_status, id))
+            cursor.execute("EXEC ConcluirTarefa ?", (id))
+            print('Parabéns, tarefa concluída com sucesso!')
         else:
-            cursor.execute("UPDATE Tarefas set Status = ? WHERE TarefaId = ?", (novo_status, id))
+            cursor.execute("EXEC AtualizarStatusTarefa ?, ?", (novo_status, id))
         self.conn.commit()
         cursor.close()
         print('Tarefa Criada com Sucesso!')
         
-    def deletar_atividade(self, id):
+    def deletar_tarefa(self, id):
         cursor = self.conn.cursor()
-        cursor.execute("DELETE FROM Tarefas WHERE TarefaId = ?", (id))
+        cursor.execute("EXEC DeletarTarefa ?", (id))
         self.conn.commit()
         cursor.close()
     

@@ -1,28 +1,19 @@
--- Criação do Banco de Dados
-CREATE DATABASE SistemaCadastroTarefa
-GO
-
-USE SistemaCadastroTarefa;
-GO
-
--- Criação da Tabela
-CREATE TABLE Tarefas
-(
-    TarefaId int IDENTITY(1,1),
-    Descricao varchar(250),
-    Status varchar(20),
-    DataCriacao DATE,
-    DataConclusao DATE,
-    PRIMARY KEY(TarefaId)
-);
-GO
-
 -- Procedure Inserir
 CREATE PROCEDURE ListarTarefas
 AS
 BEGIN
     SELECT *
     FROM Tarefas
+END
+
+-- Procedure Buscar Status atual
+CREATE PROCEDURE BuscarStatus
+    @TarefaId INT
+AS
+BEGIN
+    SELECT Status
+    FROM Tarefas
+    WHERE TarefaId = @TarefaId
 END
 
 -- Procedure Inserir
@@ -46,7 +37,7 @@ BEGIN
 END
 
 -- Procedure Tarefa Concluida
-CREATE PROCEDURE TarefaConcluida
+CREATE PROCEDURE ConcluirTarefa
     @TarefaId INT
 AS
 BEGIN

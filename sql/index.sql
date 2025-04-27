@@ -46,7 +46,7 @@ BEGIN
 END
 
 -- Procedure Tarefa Concluida
-CREATE PROCEDURE TarefaConcluida
+CREATE PROCEDURE ConcluirTarefa
     @TarefaId INT
 AS
 BEGIN
@@ -60,3 +60,5 @@ AS
 BEGIN
     DELETE FROM Tarefas WHERE TarefaId = @TarefaId
 END
+
+
