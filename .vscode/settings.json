@@ -1,0 +1,21 @@
+{
+    "sqltools.connections": [
+        {
+            "connectionTimeout": 15,
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": false,
+                "encrypt": false,
+                "trustServerCertificate": false
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 1434,
+            "driver": "MSSQL",
+            "name": "BD",
+            "database": "SistemaCadastroTarefa",
+            "username": "sa",
+            "password": "Senha123"
+        }
+    ]
+}

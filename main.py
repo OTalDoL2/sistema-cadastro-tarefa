@@ -1,19 +1,12 @@
-import os
-from dotenv import load_dotenv
+from flask import Flask
 from Database import Database
 
-load_dotenv()
-server = 'localhost'
-database = 'SistemaCadastroTarefa'
-username = 'sa'
-password = os.getenv("DB_PASS")
-driver = '{ODBC Driver 17 for SQL Server}'
 
-db = Database(server, database, username, password, driver)
-db.estabelecer_conexao()
+app = Flask(__name__)
 
-# db.atualizar_status(1, 'Em Andamento')
-db.listar_tarefas()
-db.adicionar_nova_tarefa('Cozinha batata')
-# db.deletar_tarefa(1)
-db.listar_tarefas()
+app.route('/')
+def main():
+    return '<h1>Hello World!</h1>'
+
+if __name__ == "__main__":
+    app.run(debug=True)
