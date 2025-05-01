@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 from Database import Database
+from Relatorio import Relatorio
 from flask import Flask, request, g
 
 app = Flask(__name__)
@@ -43,9 +44,9 @@ def cancelar_tarefa(id):
 @app.route('/gerar-relatorio', methods=['GET'])
 def gerar_relatorio():
     tarefas = g.db.listar_tarefas()
-    print('a',tarefas)
-    # dado = g.db.
-    return 'a'
+    relatorio = Relatorio(tarefas)
+    relatorio.gerar_relatorio()
+    return "<h1>Relatório gerado com sucesso!</h1>"
     
 @app.route('/reconectar-db')
 def reestabelecer_conexao():
