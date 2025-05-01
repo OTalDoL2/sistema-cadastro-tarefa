@@ -67,7 +67,7 @@ class Database:
         cursor.execute("EXEC CancelarTarefa ?", (id))
         self.conn.commit()
         cursor.close()
-
+            
     def encerrar_conexao(self):
         self.conn.close()
         
