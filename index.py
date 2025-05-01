@@ -1,5 +1,3 @@
-import json
-import pandas as pd
 from Database import Database
 from Relatorio import Relatorio
 from flask import Flask, request, g
@@ -26,17 +24,17 @@ def listar_tarefas():
         
     return dict_tarefas
 
-@app.route('/atualizar-status/<int:id>', methods=['POST'])
+@app.route('/atualizar-status/<int:id>', methods=['PUT'])
 def atualizar_status_tarefa(id):
     g.db.atualizar_status(id)
     return'<h1>Status atualizado com sucesso!</h1>'
     
-@app.route('/deletar-tarefa/<int:id>', methods=['POST'])
+@app.route('/deletar-tarefa/<int:id>', methods=['DELETE'])
 def deletar_tarefa(id):
     g.db.deletar_tarefa(id)
     return'<h1>Tarefa deletada com sucesso!</h1>'
     
-@app.route('/cancelar-tarefa/<int:id>', methods=['POST'])
+@app.route('/cancelar-tarefa/<int:id>', methods=['PUT'])
 def cancelar_tarefa(id):
     g.db.cancelar_tarefa(id)
     return'<h1>Tarefa cancelada com sucesso!</h1>'
@@ -63,12 +61,4 @@ def index():
     return '<h1>Seja bem vindo ao Sistema de Cadastro de Tarefas!</h1>'
 
 if __name__ == "__main__":
-    app.run(debug=True)    
-    
-    
-# adicionar_nova_tarefa
-# listar_tarefas
-# atualizar_status
-# deletar_tarefa
-# cancelar_tarefa
-# encerrar_conexao
+    app.run(debug=True)

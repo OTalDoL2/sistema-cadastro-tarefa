@@ -1,6 +1,6 @@
 import os
-from dotenv import load_dotenv
 import pyodbc
+from dotenv import load_dotenv
 
 class Database:
     def __init__(self):

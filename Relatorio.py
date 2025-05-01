@@ -1,9 +1,4 @@
-from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-from Database import Database
-
-from reportlab.platypus import Paragraph
-from reportlab.lib.styles import getSampleStyleSheet
 import reportlab.lib.colors as colors
 
 logo = colors.HexColor('#036ffc')
