@@ -3,12 +3,13 @@ from dotenv import load_dotenv
 import pyodbc
 
 class Database:
-    def __init__(self, server, database, username, password, driver):
-        self.server = server 
-        self.database = database
-        self.username = username
-        self.password = password
-        self.driver = driver
+    def __init__(self):
+        self.server = None 
+        self.database = None
+        self.username = None
+        self.password = None
+        self.driver = None
+        self.conn = None
         
     def estabelecer_conexao(self):
         load_dotenv()
@@ -18,7 +19,7 @@ class Database:
         password = os.getenv("DB_PASS")
         driver = '{ODBC Driver 17 for SQL Server}'
         try:
-            self.conn = pyodbc.connect(f'DRIVER={self.driver};SERVER={self.server};DATABASE={self.database};UID={self.username};PWD={self.password}', timeout=5)
+            self.conn = pyodbc.connect(f'DRIVER={driver};SERVER={server};DATABASE={database};UID={username};PWD={password}', timeout=5)
             print("Conexão com o banco estabelecida com sucesso!")
         except Exception as e:
             print(f'Falha na conexão. Erro: {e}')
@@ -40,10 +41,8 @@ class Database:
         cursor = self.conn.cursor()
         cursor.execute("EXEC ListarTarefas")
         rows = cursor.fetchall()
-        print("\nTarefas cadastradas:")
-        for row in rows:
-            print(f"ID: {row.TarefaId}, Descrição: {row.Descricao}, Status da Tarefa: {row.Status}, Data Criação: {row.DataCriacao}, Data Conclusão: {row.DataConclusao}")
         cursor.close()
+        return rows
         
     def atualizar_status(self, id):
         cursor = self.conn.cursor()
@@ -56,7 +55,6 @@ class Database:
             
         self.conn.commit()
         cursor.close()
-        print('Status atualizado com sucesso!')
         
     def deletar_tarefa(self, id):
         cursor = self.conn.cursor()
