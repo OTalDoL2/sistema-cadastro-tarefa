@@ -24,6 +24,19 @@ def listar_tarefas():
         
     return dict_tarefas
 
+@app.route('/listar-tarefas/<int:id>', methods=['GET'])
+def listar_tarefa(id_tarefa):
+    tarefa = g.db.listar_tarefa_pelo_id(id_tarefa)
+    
+    dict_tarefas = {}
+    dict_tarefas[tarefa[0]] = {}
+    dict_tarefas[tarefa[0]]['tarefa'] = tarefa[1]
+    dict_tarefas[tarefa[0]]['status'] = tarefa[2]
+    dict_tarefas[tarefa[0]]['data_inicio'] = tarefa[3]
+    dict_tarefas[tarefa[0]]['data_fim'] = tarefa[4]
+        
+    return dict_tarefas
+
 @app.route('/atualizar-status/<int:id>', methods=['PUT'])
 def atualizar_status_tarefa(id):
     g.db.atualizar_status(id)

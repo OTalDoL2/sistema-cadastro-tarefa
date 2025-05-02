@@ -43,6 +43,13 @@ class Database:
         rows = cursor.fetchall()
         cursor.close()
         return rows
+    
+    def listar_tarefa_pelo_id(self, id):
+        cursor = self.conn.cursor()
+        cursor.execute("EXEC ListarTarefa ?", (id))
+        rows = cursor.fetchall()
+        cursor.close()
+        return rows
         
     def atualizar_status(self, id):
         cursor = self.conn.cursor()

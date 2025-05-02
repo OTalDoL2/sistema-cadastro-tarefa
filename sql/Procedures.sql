@@ -1,11 +1,22 @@
 -- Procedure Verifica se a Tarefa foi Encerrada
 
--- Procedure Inserir
+-- Procedure Listar
 CREATE PROCEDURE ListarTarefas
 AS
 BEGIN
     SELECT *
     FROM Tarefas
+END
+GO
+
+CREATE PROCEDURE ListarTarefa
+    @TarefaId INT
+AS
+BEGIN
+    SELECT *
+    FROM Tarefas
+    WHERE TarefaId = @TarefaId
+
 END
 GO
 
