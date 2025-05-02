@@ -20,17 +20,21 @@ def break_line(task_text):
 
     return broke_text
 
+def process_date(date):
+    if date == None:
+        return "Não encerrada"
+    else:
+        return date.strftime("%d/%m/%Y")
 
 def structure_tasks_view(tasks_raw):
     tasks = {
         "id": tasks_raw[0],
         "status": tasks_raw[2],
-        "data_inicio": tasks_raw[3],
-        "data_fim": tasks_raw[4],
+        "data_inicio": process_date(tasks_raw[3]),
+        "data_fim": process_date(tasks_raw[4]),
     }
     
     tasks['tarefa'] = break_line(tasks_raw[1])
-    # print('aqui', tasks['tarefa'])
     view_text = f"\t\t{tasks['id']}\t\t{tasks['tarefa'][0]}\t\t{tasks['status']}\t\t{tasks['data_inicio']}\t\t{tasks['data_fim']}"
     if len(tasks['tarefa']) > 1:
         view_text += f"\n\t\t\t\t{tasks['tarefa'][1]}"

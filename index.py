@@ -24,7 +24,7 @@ def listar_tarefas():
         
     return dict_tarefas
 
-@app.route('/listar-tarefas/<int:id>', methods=['GET'])
+@app.route('/listar-tarefa/<int:id>', methods=['GET'])
 def listar_tarefa(id_tarefa):
     tarefa = g.db.listar_tarefa_pelo_id(id_tarefa)
     

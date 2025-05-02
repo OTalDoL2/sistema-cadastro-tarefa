@@ -66,9 +66,13 @@ Você pode iniciar a API localmente com:
     
 
 ## 🌐 Exemplos de Requests
-GET - Listar usuários
+GET - Listar tarefas
 
     GET /listar-tarefas
+
+GET - Listar tarefa
+
+    GET /listar-tarefa/<int:id>
 
 POST - Adicionar nova tarefa
 

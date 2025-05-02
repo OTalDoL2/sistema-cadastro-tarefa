@@ -58,7 +58,6 @@ class Relatorio:
         self.c.setFillColor(preto)
         
     def __data_tratada(self, data):
-        print('aqui', data)
         if data == None:
             return "Não encerrada"
         else:
@@ -67,9 +66,7 @@ class Relatorio:
     def __lista_itens(self, tarefas):
         altura = 750
 
-        print('tarefas', len(tarefas))
         for tarefa in tarefas:
-            print(len(tarefa))
             self.c.drawString(35, altura, str(tarefa[0]))
             self.c.drawString(80, altura, str(tarefa[1]))
             self.__adicionando_status(333, altura, tarefa[2])
