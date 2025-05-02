@@ -105,3 +105,6 @@ GET - Gerar Relatório
 
     GET /gerar-relatorio
 
+## Extra
+
+Caso você que estiver lendo/testando tiver interesse, há uma versão CLI dessa aplicação, feita totalmente In-Line. Confesso ter sido gratificante a construção nesse formato.
